@@ -29,10 +29,23 @@
 	<div class="entry-content">
 		<?php
 			/* translators: %s: Name of current post */
+			/*<?php if ( is_category() || is_archive() ) {
+				the_excerpt();
+				} else {
+					the_content();
+				} ?>
+			Why the original codes dont't work here. 
+			https://developer.wordpress.org/reference/functions/the_excerpt/
+			为何站点提供的代码不能直接用，没学过PHP，我参考上面if语句的写法之后才正常运行*/
+
+			if ( is_category() || is_archive() || is_home() ) :
+	the_excerpt();
+			else:
 			the_content( sprintf(
 				__( 'Continue reading %s', 'twentyfifteen' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
+			endif;
 
 			wp_link_pages( array(
 				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfifteen' ) . '</span>',
